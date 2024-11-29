@@ -8,9 +8,9 @@ document.querySelector("#change-theme span").textContent =
 changeTheme();
 
 function changeTheme() {
-  const changeThemeButton = document.querySelector("#change-theme");
+  let changeThemeButton = document.querySelector("#change-theme");
   changeThemeButton.addEventListener("click", (event) => {
-    const oldTheme = currntTheme;
+    let oldTheme = currntTheme;
     if (currntTheme === "dark") {
       currntTheme = "light";
     } else {
