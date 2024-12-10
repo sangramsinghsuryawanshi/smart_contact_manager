@@ -28,8 +28,11 @@ public class SecurityConfig {
 
     private final SecurityCustomUserDetailService securityCustomUserDetailService;
 
-    public SecurityConfig(SecurityCustomUserDetailService securityCustomUserDetailService) {
+    private final OAuthAuthenicationSuccessHandler oAuthAuthenicationSuccessHandler;
+
+    public SecurityConfig(SecurityCustomUserDetailService securityCustomUserDetailService, OAuthAuthenicationSuccessHandler oAuthAuthenicationSuccessHandler) {
         this.securityCustomUserDetailService = securityCustomUserDetailService;
+        this.oAuthAuthenicationSuccessHandler=oAuthAuthenicationSuccessHandler;
     }
 
     @Bean
@@ -64,6 +67,7 @@ public class SecurityConfig {
          // oauth Configuration
          httpSecurity.oauth2Login(oauth -> { 
             oauth.loginPage("/login");
+            oauth.successHandler(oAuthAuthenicationSuccessHandler);
         });
 
         return httpSecurity.build();
